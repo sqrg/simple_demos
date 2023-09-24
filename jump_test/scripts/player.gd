@@ -30,9 +30,12 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("run") and is_on_floor():
 		speed *= run_multiplier
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	
+	if Input.is_action_pressed("move_left"):
+		$Sprite2D.flip_h = false
+	elif Input.is_action_pressed("move_right"):
+		$Sprite2D.flip_h = true
+	
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * speed
